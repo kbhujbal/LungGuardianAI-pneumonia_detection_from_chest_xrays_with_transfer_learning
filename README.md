@@ -6,6 +6,58 @@ A competition-grade pneumonia detection solution for the [RSNA Pneumonia Detecti
 
 ---
 
+## Detection Demo
+
+<p align="center">
+  <img src="assets/detection_demo.png" alt="Pneumonia Detection Demo" width="800"/>
+</p>
+
+### What This Model Does: Object Detection vs Classification
+
+This is an **Object Detection** system, NOT a simple classifier. It localizes and identifies pneumonia opacities with bounding boxes.
+
+```
+┌─────────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                     │
+│   IMAGE CLASSIFICATION                    OBJECT DETECTION (This Project)          │
+│   ─────────────────────                   ─────────────────────────────────         │
+│                                                                                     │
+│   ┌─────────────────────┐                 ┌─────────────────────┐                   │
+│   │                     │                 │    ┌───────────┐    │                   │
+│   │                     │                 │    │ PNEUMONIA │    │                   │
+│   │    Chest X-Ray      │                 │    │  92.3%    │    │                   │
+│   │       Image         │                 │    └───────────┘    │                   │
+│   │                     │                 │                     │                   │
+│   │                     │                 │         ┌───────┐   │                   │
+│   │                     │                 │         │ 78.1% │   │                   │
+│   │                     │                 │         └───────┘   │                   │
+│   └─────────────────────┘                 └─────────────────────┘                   │
+│                                                                                     │
+│   Output:                                 Output:                                   │
+│   "Pneumonia: 87%"                        Box 1: [120,180,270,380] conf=0.923       │
+│   (Single label only)                     Box 2: [450,220,550,350] conf=0.781       │
+│                                           (Precise locations + confidence)          │
+│                                                                                     │
+└─────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Sample Detection Output
+
+| Input | Output |
+|:-----:|:------:|
+| ![Input X-Ray](assets/sample_input.png) | ![Detection Output](assets/sample_output.png) |
+| Raw Chest X-Ray (DICOM) | Detected Pneumonia Regions with Bounding Boxes |
+
+**Detection Results Format:**
+```
+Patient ID: 0004cfab-14fd-4e49-80ba-63a80b6bddd6
+├── Detection 1: [x=156, y=234, w=189, h=245] confidence=0.94
+├── Detection 2: [x=423, y=198, w=134, h=167] confidence=0.82
+└── Total: 2 pneumonia opacities detected
+```
+
+---
+
 ## Table of Contents
 
 - [Overview](#overview)
