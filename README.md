@@ -16,30 +16,14 @@ A competition-grade pneumonia detection solution for the [RSNA Pneumonia Detecti
 
 This is an **Object Detection** system, NOT a simple classifier. It localizes and identifies pneumonia opacities with bounding boxes.
 
-```
-┌─────────────────────────────────────────────────────────────────────────────────────┐
-│                                                                                     │
-│   IMAGE CLASSIFICATION                    OBJECT DETECTION (This Project)          │
-│   ─────────────────────                   ─────────────────────────────────         │
-│                                                                                     │
-│   ┌─────────────────────┐                 ┌─────────────────────┐                   │
-│   │                     │                 │    ┌───────────┐    │                   │
-│   │                     │                 │    │ PNEUMONIA │    │                   │
-│   │    Chest X-Ray      │                 │    │  92.3%    │    │                   │
-│   │       Image         │                 │    └───────────┘    │                   │
-│   │                     │                 │                     │                   │
-│   │                     │                 │         ┌───────┐   │                   │
-│   │                     │                 │         │ 78.1% │   │                   │
-│   │                     │                 │         └───────┘   │                   │
-│   └─────────────────────┘                 └─────────────────────┘                   │
-│                                                                                     │
-│   Output:                                 Output:                                   │
-│   "Pneumonia: 87%"                        Box 1: [120,180,270,380] conf=0.923       │
-│   (Single label only)                     Box 2: [450,220,550,350] conf=0.781       │
-│                                           (Precise locations + confidence)          │
-│                                                                                     │
-└─────────────────────────────────────────────────────────────────────────────────────┘
-```
+<p align="center">
+  <img src="assets/classification_vs_detection.png" alt="Classification vs Detection" width="800"/>
+</p>
+
+| Approach | Output | Use Case |
+|:--------:|:------:|:--------:|
+| **Classification** | Single label: "Pneumonia: 87%" | Screening only |
+| **Detection (This Project)** | Bounding boxes + confidence scores | Clinical localization |
 
 ### Sample Detection Output
 
